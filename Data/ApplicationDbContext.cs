@@ -11,6 +11,7 @@ namespace Pharmacy.Data
             : base(options)
         {
         }
-        public DbSet<Pharmacy.Models.Inventory> Inventory { get; set; } = default!;
+        public DbSet<Inventory> Inventory { get; set; } = default!;
+        public DbSet<Pet> Pet { get; set; } = default!;
     }
 }
