@@ -57,7 +57,7 @@ namespace Pharmacy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Name,Age,Gender,History,Allergies,UserId")] Pet pet)
+        public async Task<IActionResult> Create([Bind("Id,Type,Name,Age,Gender,Allergies,UserId")] Pet pet)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Pharmacy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Age,Gender,History,Allergies,UserId")] Pet pet)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Name,Age,Gender,Allergies,UserId")] Pet pet)
         {
             if (id != pet.Id)
             {
