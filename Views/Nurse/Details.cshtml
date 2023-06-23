@@ -1,0 +1,139 @@
+﻿@model Pharmacy.Models.Pet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <div class="row">
+        <h4 class="col-sm-4">
+            Prescriptions
+        </h4>
+        <h4 class="col-sm-4">
+            Reports
+        </h4>
+        <h4 class="col-sm-4">Pet's Info</h4>
+        </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Drug Name
+                        </th>
+                        <th>
+                            Dose
+                        </th>
+                        <th>
+                            Duration
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Prescription)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dose)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Duration)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Report Type
+                        </th>
+                        <th>
+                            Report File
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Report)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.File)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Type)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Type)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Age)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Age)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.History)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.History)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Allergies)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Allergies)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.User.Id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.User.Id)
+                </dd>                
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.User.UserName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.User.UserName)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -13,7 +13,7 @@ namespace Pharmacy.Models
         public string History { get; set; }
         public string Allergies { get; set; }
         public List<Report>? Report { get; set; }
-        public PharmacyUser User { get; set; }
+        public PharmacyUser? User { get; set; }
         public int UserId { get; set; }
     }
 }

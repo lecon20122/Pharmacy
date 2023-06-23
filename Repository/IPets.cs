@@ -5,7 +5,7 @@ namespace Pharmacy.Repository
     public interface IPets
     {
         List<Pet>? GetAll(int? id, string? searchName);
-        Pet? GetPet(int id, int? userId);
+        Pet GetPet(int id);
         void Create(Pet pet);
         void Edit(Pet pet);
         void Delete(int? id);

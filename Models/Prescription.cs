@@ -8,6 +8,6 @@
         public string Dose { get; set; }
         public string Duration { get; set; }
         public int PetId { get; set; }
-        public Pet Pet { get; set; }
+        public Pet? Pet { get; set; }
     }
 }

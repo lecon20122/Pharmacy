@@ -51,9 +51,17 @@ namespace Pharmacy.Repository
 
 
 
-        public Pet? GetPet(int id, int? userId)
+        public Pet GetPet(int id)
         {
-            return _context.Pet.Find(id);
+            var pet = _context.Pet
+                .Include(p => p.User)
+                .Include(p => p.Prescription)
+                .Include(p => p.Report)
+                .FirstOrDefault(m => m.Id == id);
+
+            if (pet is null) throw new Exception("Not found");
+
+            return pet;
         }
 
         public List<Pet>? GetUserPets(int? id, string? searchName, int userId)

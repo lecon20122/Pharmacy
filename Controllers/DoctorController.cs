@@ -1,21 +1,36 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Pharmacy.Models;
+using Pharmacy.Repository;
 
 namespace Pharmacy.Controllers
 {
     [Authorize(Policy = "IsDoctor")]
     public class DoctorController : Controller
     {
-        // GET: DoctorController
-        public ActionResult Index()
+        private readonly IPets _pets;
+
+        public DoctorController(IPets pets)
         {
-            return View();
+            _pets = pets;
+        }
+
+        // GET: DoctorController
+        public ActionResult<List<Pet>> Index(int? id, string? searchName)
+        {
+            var pets = _pets.GetAll(id, searchName);
+            return View(pets);
         }
 
         // GET: DoctorController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult<Pet?> Details(int id)
         {
-            return View();
+            var pet = _pets.GetPet(id);
+            if (pet is null)
+            {
+                return NotFound();
+            }
+            return View(pet);
         }
 
         // GET: DoctorController/Create
