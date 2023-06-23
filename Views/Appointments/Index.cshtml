@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Appointment";
+    Layout = "~/Views/Shared/_Layout_Web_Green.cshtml";
 }
 
 <h1>Index</h1>
@@ -22,9 +23,6 @@
                 @Html.DisplayNameFor(model => model.Date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Pet)
             </th>
             <th></th>
@@ -43,15 +41,10 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Pet.Id)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }

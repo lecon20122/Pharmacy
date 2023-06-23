@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Pharmacy.Models;
+using Pharmacy.Types;
 using System.Diagnostics;
 
 namespace Pharmacy.Controllers
@@ -15,6 +16,26 @@ namespace Pharmacy.Controllers
 
         public IActionResult Index()
         {
+            if (User.IsInRole(UserRoles.Nurse))
+            {
+                return RedirectToAction("Index", "Nurse");
+            }
+
+            if (User.IsInRole(UserRoles.Pharmacist))
+            {
+                return RedirectToAction("Index", "Pharmacists");
+            }
+
+            if (User.IsInRole(UserRoles.Doctor))
+            {
+                return RedirectToAction("Index", "Doctor");
+            }
+
+            if (User.IsInRole(UserRoles.Patient))
+            {
+                return RedirectToAction("Index", "Patient");
+            }
+
             return View();
         }
 

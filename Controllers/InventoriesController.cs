@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pharmacy.Data;
 using Pharmacy.Models;
@@ -22,9 +18,9 @@ namespace Pharmacy.Controllers
         // GET: Inventories
         public async Task<IActionResult> Index()
         {
-              return _context.Inventory != null ? 
-                          View(await _context.Inventory.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Inventory'  is null.");
+            return _context.Inventory != null ?
+                        View(await _context.Inventory.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Inventory'  is null.");
         }
 
         // GET: Inventories/Details/5
@@ -45,6 +41,7 @@ namespace Pharmacy.Controllers
             return View(inventory);
         }
 
+        [Authorize(Policy = "IsPharmacist")]
         // GET: Inventories/Create
         public IActionResult Create()
         {
@@ -54,6 +51,7 @@ namespace Pharmacy.Controllers
         // POST: Inventories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "IsPharmacist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Price,NumberAvailable")] Inventory inventory)
@@ -67,6 +65,7 @@ namespace Pharmacy.Controllers
             return View(inventory);
         }
 
+        [Authorize(Policy = "IsPharmacist")]
         // GET: Inventories/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -86,6 +85,7 @@ namespace Pharmacy.Controllers
         // POST: Inventories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Policy = "IsPharmacist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,NumberAvailable")] Inventory inventory)
@@ -118,6 +118,7 @@ namespace Pharmacy.Controllers
             return View(inventory);
         }
 
+        [Authorize(Policy = "IsPharmacist")]
         // GET: Inventories/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -137,6 +138,7 @@ namespace Pharmacy.Controllers
         }
 
         // POST: Inventories/Delete/5
+        [Authorize(Policy = "IsPharmacist")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -150,14 +152,14 @@ namespace Pharmacy.Controllers
             {
                 _context.Inventory.Remove(inventory);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool InventoryExists(int id)
         {
-          return (_context.Inventory?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Inventory?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

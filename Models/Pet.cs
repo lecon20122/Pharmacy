@@ -10,7 +10,6 @@ namespace Pharmacy.Models
         public string Age { get; set; } = default!;
         public string Gender { get; set; } = default!;
         public List<Prescription>? Prescription { get; set; }
-        public string History { get; set; }
         public string Allergies { get; set; }
         public List<Report>? Report { get; set; }
         public PharmacyUser? User { get; set; }

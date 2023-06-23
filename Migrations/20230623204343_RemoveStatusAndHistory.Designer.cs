@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pharmacy.Data;
 
@@ -11,9 +12,11 @@ using Pharmacy.Data;
 namespace Pharmacy.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230623204343_RemoveStatusAndHistory")]
+    partial class RemoveStatusAndHistory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,13 +282,13 @@ namespace Pharmacy.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f2ba69b1-f3ab-4b0e-9167-d26dcda3a87e",
+                            ConcurrencyStamp = "366c8e5e-e076-4ccb-b8d2-c13252084cdf",
                             Email = "doctor@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "DOCTOR@GMAIL.COM",
                             NormalizedUserName = "DOCTOR@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG5tb+rrGfvQoEGuuqOCIcx9xcRcoHIG5jKFEHdcJIcFDtKH16cWJhB21e78Z79nJw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIy+zoxOCrvp54u26sGdBajGSqRDPMu8Rox3UejXgZgJE5AozsoYM5HcE/YjMzUdKg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -295,13 +298,13 @@ namespace Pharmacy.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "4855bbc5-d4c6-4f48-867c-af32b8002cbf",
+                            ConcurrencyStamp = "f8fdd538-bc9a-45a5-8501-1b1c002d4273",
                             Email = "Nurse@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "NURSE@GMAIL.COM",
                             NormalizedUserName = "NURSE@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDlFSiCtv05MGKrNAAF52mdsLp6C7PGGzdPi00DUANa6tJz5PbG8go/VPACW4BcW1g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGnj3mMsdH70dlivC7+2SV3VyeXgON9dzlo43USRrMzZWUFDyXYaaFsaEN72m7HrUA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -311,13 +314,13 @@ namespace Pharmacy.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2f21aa26-b00c-45d1-ae2c-422611e7755d",
+                            ConcurrencyStamp = "c6b1838b-d9e6-4a48-8824-951c98cbd0b4",
                             Email = "Patient@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "PATIENT@GMAIL.COM",
                             NormalizedUserName = "PATIENT@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDJi/uCNHv6P41vE4JprMaUHHzE8/jQaCg7zxsHaoTH/bA7apqrrCFdCQ1QmePCxJA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK0EpQ8DEVNQ9hGu6L/nQxn5sjEBeEM3ETfq3RVzESRqXpiMQIVKOr+f1h6EYSI3Tg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -327,13 +330,13 @@ namespace Pharmacy.Migrations
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2f1abd20-df01-4eee-a688-93862d05ffe4",
+                            ConcurrencyStamp = "075b6a0e-dd20-456c-883e-6a5b5311630f",
                             Email = "Pharmacist@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "PHARMACIST@GMAIL.COM",
                             NormalizedUserName = "PHARMACIST@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFf6wKqLmlv5yAOTreiHAw5c/q1GdfCzdgkCDsL/ICJoACmGgMbF55j8Y/MEaDpevg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHUSY7KP+xKS1g6nBxbg77z+mfzJjUZwIbPrnmuoecy3STfxvclDhlRE+u73iY2QDA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -457,9 +460,6 @@ namespace Pharmacy.Migrations
 
                     b.Property<int>("PetId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

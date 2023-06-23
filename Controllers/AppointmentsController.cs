@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pharmacy.Data;
@@ -57,7 +53,7 @@ namespace Pharmacy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,Description,Date,Status,PetId")] Appointment appointment)
+        public async Task<IActionResult> Create([Bind("Id,Type,Description,Date,PetId")] Appointment appointment)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +87,7 @@ namespace Pharmacy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Description,Date,Status,PetId")] Appointment appointment)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Description,Date,PetId")] Appointment appointment)
         {
             if (id != appointment.Id)
             {
@@ -155,14 +151,14 @@ namespace Pharmacy.Controllers
             {
                 _context.Appointment.Remove(appointment);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AppointmentExists(int id)
         {
-          return (_context.Appointment?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Appointment?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

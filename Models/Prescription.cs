@@ -9,5 +9,6 @@
         public string Duration { get; set; }
         public int PetId { get; set; }
         public Pet? Pet { get; set; }
+        public bool Status { get; set; }
     }
 }

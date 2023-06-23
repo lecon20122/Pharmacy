@@ -1,0 +1,65 @@
+﻿@model Pharmacy.Models.Pet
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout_Web_Blue.cshtml";
+}
+
+<h1>@Model.Name's Prescription</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Drug Name
+            </th>
+            <th>
+                Dose
+            </th>
+            <th>
+                Duration
+            </th>            
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Prescription)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dose)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Duration)
+                </td>                
+                <td>
+                    @if(item.Status)
+                    {
+                        <p class="text-success">Accepted</p>
+                    }
+                    else
+                    {
+                    <p class="text-danger">Rejected</p>
+                    }
+                </td>
+                <td>
+                        <form method="post">
+                        @if (item.Status)
+                        {
+                            <button type="submit" asp-controller="Pharmacists" asp-action="ToggleStatus" asp-route-id="@item.Id" class="btn btn-link text-danger">Reject</button>
+                        }
+                        else
+                        {
+                            <button type="submit" asp-controller="Pharmacists" asp-action="ToggleStatus" asp-route-id="@item.Id" class="btn btn-link  text-success">Accept</button>
+                        }
+                        </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

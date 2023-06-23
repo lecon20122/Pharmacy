@@ -1,10 +1,18 @@
 ﻿@model IEnumerable<Pharmacy.Models.Pet>
-
 @{
-    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_Web_Blue.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Pets Information</h1>  
+
+
+<form asp-controller="Pets" asp-action="Index" method="get">
+    <p>
+        <input type="number" name="id" placeholder="Pet ID" />
+        <input type="text" name="searchName" placeholder="Pet Name" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,7 +21,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Type)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -28,7 +36,7 @@
                 @Html.DisplayNameFor(model => model.Allergies)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.User)
+                @Html.DisplayNameFor(model => model.User.UserName)
             </th>
             <th></th>
         </tr>
@@ -38,25 +46,25 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Type)
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Age)
+                    @Html.DisplayFor(model => item.Age)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
+                    @Html.DisplayFor(model => item.Gender)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Allergies)
+                    @Html.DisplayFor(model => item.Allergies)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.User.Id)
+                    @Html.DisplayFor(model => item.User.UserName)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">View Prescriptions</a>
                 </td>
             </tr>
         }

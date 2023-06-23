@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Appointment Details";
+    Layout = "~/Views/Shared/_Layout_Web_Green.cshtml";
 }
 
 <h1>Details</h1>
@@ -27,12 +28,6 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Date)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Pet)
