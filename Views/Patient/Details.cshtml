@@ -10,7 +10,6 @@
     <div class="row">
         <h4 class="col-sm-4">
             Prescriptions
-            <a asp-controller="Prescriptions" asp-action="Create" asp-route-id="@Model.Id">Add New </a>
         </h4>
         <h4 class="col-sm-4">
             Reports
@@ -31,11 +30,10 @@
                         </th>
                         <th>
                             Duration
-                        </th>                        
+                        </th>
                         <th>
                             Status
                         </th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,11 +58,6 @@
                                 {
                                     <p class="text-danger">Rejected</p>
                                 }
-                            </td>
-                              <td>
-                                <a asp-controller="Prescriptions" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-controller="Prescriptions" asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-controller="Prescriptions" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
                     }
@@ -91,7 +84,7 @@
                                 @Html.DisplayFor(modelItem => item.Type)
                             </td>
                             <td>
-                                <a href="~/@item.File">View Report</a>
+                                <a href="~/@item.File" target="_blank">View Report</a>
                             </td>
                         </tr>
                     }
@@ -148,6 +141,4 @@
 
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

@@ -30,7 +30,11 @@ namespace Pharmacy.Controllers
         // GET: PatientController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pet = _pets.GetPet(id);
+
+            if (pet is null) return NotFound();
+
+            return View(pet);
         }
 
         // GET: PatientController/Create

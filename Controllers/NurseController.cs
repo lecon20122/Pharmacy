@@ -48,7 +48,7 @@ namespace Pharmacy.Controllers
         // GET: Nurse/Create
         public IActionResult Create()
         {
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Pharmacy.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id", pet.UserId);
+            ViewData["UserId"] = new SelectList(_context.Users, "Id", "UserName", pet.UserId);
             return View(pet);
         }
 

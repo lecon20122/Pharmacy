@@ -9,9 +9,21 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <p>
+        <input type="number" name="id" placeholder="Pet ID" />
+        <input type="text" name="searchName" placeholder="Pet Name" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Type)
             </th>
@@ -38,6 +50,8 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>                <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
                 <td>
