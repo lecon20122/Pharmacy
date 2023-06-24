@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pharmacy.Areas.Identity.Data;
+using Pharmacy.Data;
 using Pharmacy.Repository;
 
 namespace Pharmacy.Controllers
@@ -11,13 +12,15 @@ namespace Pharmacy.Controllers
     {
         private readonly IPets _pets;
         private readonly UserManager<PharmacyUser> _userManager;
+        private readonly ApplicationDbContext _context;
 
         private int _userId => int.Parse(_userManager.GetUserId(User));
 
-        public PatientController(IPets pets, UserManager<PharmacyUser> userManager)
+        public PatientController(IPets pets, UserManager<PharmacyUser> userManager, ApplicationDbContext context)
         {
             _pets = pets;
             _userManager = userManager;
+            _context = context;
         }
 
         // GET: PatientController
@@ -37,67 +40,17 @@ namespace Pharmacy.Controllers
             return View(pet);
         }
 
-        // GET: PatientController/Create
-        public ActionResult Create()
+        public ActionResult Appointments()
         {
-            return View();
-        }
+            var patientPets = _pets.GetUserPets(null, null, _userId);
 
-        // POST: PatientController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            var Ids = patientPets.Select(p => p.Id).ToList();
 
-        // GET: PatientController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+            var appointments = _context.Appointment.Where(a => Ids.Contains(a.Id)).ToList();
 
-        // POST: PatientController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+            if (appointments is null) return NotFound();
 
-        // GET: PatientController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: PatientController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            return View(appointments);
         }
     }
 }

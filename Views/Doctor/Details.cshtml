@@ -14,6 +14,7 @@
         </h4>
         <h4 class="col-sm-4">
             Reports
+            <a asp-controller="Reports" asp-action="Create" asp-route-id="@Model.Id">Add New </a>
         </h4>
         <h4 class="col-sm-4">Pet's Info</h4>
     </div>
@@ -91,7 +92,7 @@
                                 @Html.DisplayFor(modelItem => item.Type)
                             </td>
                             <td>
-                                <a href="~/@item.File">View Report</a>
+                                <a target="_blank" href="~/@item.File">View Report</a>
                             </td>
                         </tr>
                     }

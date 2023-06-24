@@ -45,10 +45,13 @@ namespace Pharmacy.Controllers
         }
 
         // GET: Reports/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id");
-            var model = new CreateReportViewModel();
+            var model = new CreateReportViewModel
+            {
+                paramPetId = id,
+                selectListItems = new SelectList(_context.Pet, "Id", "Id")
+            };
             return View(model);
         }
 
@@ -79,10 +82,14 @@ namespace Pharmacy.Controllers
             {
                 _context.Add(reportModel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Doctor", new { id = report.PetId });
             }
 
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id", report.PetId);
+            var model = new CreateReportViewModel
+            {
+                paramPetId = report.Id,
+                selectListItems = new SelectList(_context.Pet, "Id", "Id")
+            };
             return View(report);
         }
 

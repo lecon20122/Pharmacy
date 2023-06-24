@@ -4,12 +4,13 @@
 }
 
 <h1>Patient View</h1>
+<a asp-controller="Patient" asp-action="Appointments">View Appointments</a>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Pet Name
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Age)
